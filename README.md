@@ -1,10 +1,6 @@
-# PowerPulse C2 Overview
-PowerPulse is a basic C2 that lets you execute powershell commands on target machines once the machines are infected with a custom executable file
-## C2 Dashboard
-![C2 Dashboard](https://github.com/user-attachments/assets/1ff09483-effb-4be1-8425-63b6fa1884fe)
 
-## C2 Agent Details Page
-![C2 Agent Details Page 1](https://github.com/user-attachments/assets/a98fd428-fdee-4a37-9ccb-0270a2bea8d5)
+
+
 
 ## Installation
 Clone the repository and then install virtual environment:
