@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{{ agent.hostname }} - Agent Details</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="/static/js/agentDetails.js"></script>
+    </head>
+    <body class="bg-gray-900 text-gray-100">
+        <div class="min-h-screen flex flex-col">
+            {% include 'navbar.html' %}
+            <!-- Main Content -->
+            <main class="flex-grow container mx-auto p-6">
+                <div class="bg-gray-700 p-6 rounded-lg shadow-lg">
+                    <!-- Tab Navigation -->
+                    <div class="border-b border-gray-600 mb-6">
+                        <ul class="flex space-x-4">
+                            <li
+                                class="cursor-pointer py-2 px-4 text-lg font-semibold text-gray-300 hover:text-white"
+                                data-tab="interact"
+                                onclick="switchTab(event)"
+                                id="interactTabNav"
+                            >
+                                Interact
+                            </li>
+                            <li
+                                class="cursor-pointer py-2 px-4 text-lg font-semibold text-gray-300 hover:text-white"
+                                data-tab="fileBrowser"
+                                onclick="switchTab(event)"
+                                id="fileBrowserTabNav"
+                            >
+                                File Browser
+                            </li>
+                            <li
+                                class="cursor-pointer py-2 px-4 text-lg font-semibold text-gray-300 hover:text-white"
+                                data-tab="details"
+                                onclick="switchTab(event)"
+                                id="detailsTabNav"
+                            >
+                                Details
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Tab Content -->
+                    <!-- <div id="detailsTab" class="tab-content"> -->
+
+                    <!-- </div> -->
+
+                    <!-- <div id="interactTab" class="tab-content hidden"> -->
+                    {% include 'agent_details_tabs/interact.html' %}
+                    <!-- </div> -->
+
+                    <!-- <div id="fileBrowserTab" class="tab-content hidden"> -->
+                    {% include 'agent_details_tabs/file_browser.html' %}
+                    <!-- </div> -->
+
+                    {% include 'agent_details_tabs/details.html' %}
+                </div>
+            </main>
+
+            {% include 'footer.html' %}
+        </div>
+
+        <script>
+            // Switch tab function
+            function switchTab(event) {
+                // Get the target tab from the clicked item
+                const targetTab = event.target.getAttribute("data-tab");
+
+                // Get all tab content elements and hide them
+                const tabContents = document.querySelectorAll(".tab-content");
+                tabContents.forEach((content) =>
+                    content.classList.add("hidden")
+                );
+
+                // Show the selected tab content
+                const activeTab = document.getElementById(targetTab + "Tab");
+                if (activeTab) {
+                    activeTab.classList.remove("hidden");
+                }
+
+                // Update active tab style
+                const tabItems = document.querySelectorAll("[data-tab]");
+                tabItems.forEach((item) => item.classList.remove("text-white"));
+                event.target.classList.add("text-white");
+            }
+
+            // Initialize default tab (detailsTab)
+            document.addEventListener("DOMContentLoaded", function () {
+                // Set default tab visibility and style
+                const defaultTab = document.getElementById("interactTab");
+                const defaultTabNav = document.getElementById("interactTabNav");
+                if (defaultTab) {
+                    defaultTab.classList.remove("hidden");
+                    defaultTabNav.classList.add("text-white");
+                }
+            });
+        </script>
+    </body>
+</html>
